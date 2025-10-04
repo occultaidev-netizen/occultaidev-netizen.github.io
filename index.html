@@ -11,14 +11,65 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-neon: #ff00ff;
+            --secondary-neon: #00ffff;
+            --tertiary-neon: #ffff00;
+            --bg-dark: #0a0e27;
+            --bg-mid: #1a1a3e;
+            --text-light: #b8b8ff;
+        }
+
         body {
             font-family: 'Courier New', monospace;
-            background: linear-gradient(180deg, #0a0e27 0%, #1a1a3e 50%, #0f0820 100%);
+            background: #000;
             color: #fff;
             overflow-x: hidden;
             min-height: 100vh;
+            cursor: crosshair;
         }
 
+        /* Animated Background */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(180deg, #0a0e27 0%, #1a1a3e 50%, #0f0820 100%);
+        }
+
+        .fog {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cfilter id="fog"%3E%3CfeTurbulence baseFrequency="0.01" numOctaves="2" /%3E%3CfeColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"/%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23fog)" opacity="0.4"/%3E%3C/svg%3E');
+            opacity: 0.3;
+            animation: drift 30s infinite linear;
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Pixel Grid Overlay */
+        .pixel-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px);
+        }
+
+        /* Enhanced Stars */
         .stars {
             position: fixed;
             top: 0;
@@ -30,76 +81,199 @@
 
         .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
             background: #fff;
-            border-radius: 50%;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             animation: twinkle 3s infinite;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+        .star.large {
+            width: 4px;
+            height: 4px;
+            filter: blur(0.5px);
         }
 
+        .star.medium {
+            width: 3px;
+            height: 3px;
+            opacity: 0.7;
+        }
+
+        .star.small {
+            width: 2px;
+            height: 2px;
+            opacity: 0.5;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
             z-index: 1;
         }
 
+        /* Enhanced Header */
         header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
             margin-bottom: 60px;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
         }
 
         .glitch {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: bold;
             text-transform: uppercase;
             position: relative;
-            color: #ff00ff;
-            letter-spacing: 0.2rem;
-            animation: glitch 2s infinite;
+            color: var(--primary-neon);
+            letter-spacing: 0.3rem;
+            text-shadow: 
+                0 0 10px var(--primary-neon),
+                0 0 20px var(--primary-neon),
+                0 0 30px var(--primary-neon);
+            animation: glitch-animation 3s infinite;
         }
 
-        @keyframes glitch {
-            0% { text-shadow: 2px 2px #00ffff, -2px -2px #ff00ff; }
-            25% { text-shadow: -2px 2px #00ffff, 2px -2px #ff00ff; }
-            50% { text-shadow: 2px -2px #00ffff, -2px 2px #ff00ff; }
-            75% { text-shadow: -2px -2px #00ffff, 2px 2px #ff00ff; }
-            100% { text-shadow: 2px 2px #00ffff, -2px -2px #ff00ff; }
+        .glitch::before,
+        .glitch::after {
+            content: 'Occult AI';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--secondary-neon);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--tertiary-neon);
+            z-index: -2;
+        }
+
+        @keyframes glitch-animation {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(20% 0 30% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(50% 0 20% 0); transform: translate(2px, -2px); }
+            60% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+            80% { clip-path: inset(70% 0 10% 0); transform: translate(1px, -1px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+            40% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 1px); }
+            60% { clip-path: inset(30% 0 40% 0); transform: translate(1px, 2px); }
+            80% { clip-path: inset(80% 0 5% 0); transform: translate(-1px, -2px); }
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: #00ffff;
-            margin-top: 20px;
-            line-height: 1.8;
+            font-size: 1.3rem;
+            color: var(--secondary-neon);
+            margin-top: 30px;
+            line-height: 2;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        .neon-box {
-            border: 2px solid #ff00ff;
-            padding: 40px;
-            margin: 40px 0;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3),
-                        inset 0 0 20px rgba(255, 0, 255, 0.1);
-            background: rgba(10, 14, 39, 0.6);
-            backdrop-filter: blur(10px);
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: #ff00ff;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.3rem;
             position: relative;
-            padding-bottom: 10px;
+            padding: 20px;
+        }
+
+        .subtitle::before {
+            content: '<<';
+            position: absolute;
+            left: -20px;
+            color: var(--primary-neon);
+            animation: blink 1s infinite;
+        }
+
+        .subtitle::after {
+            content: '>>';
+            position: absolute;
+            right: -20px;
+            color: var(--primary-neon);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Interactive Neon Box */
+        .neon-box {
+            border: 2px solid var(--primary-neon);
+            padding: 50px;
+            margin: 50px 0;
+            position: relative;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .neon-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-neon), var(--secondary-neon), var(--tertiary-neon), var(--primary-neon));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            filter: blur(10px);
+        }
+
+        .neon-box:hover::before {
+            opacity: 1;
+            animation: rotate-border 3s linear infinite;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .neon-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 40px rgba(255, 0, 255, 0.4),
+                0 0 80px rgba(0, 255, 255, 0.2),
+                inset 0 0 30px rgba(255, 0, 255, 0.1);
+        }
+
+        /* Section Titles with Typing Effect */
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-neon);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.4rem;
+            position: relative;
+            padding-bottom: 15px;
+            display: inline-block;
         }
 
         .section-title::after {
@@ -107,97 +281,326 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, #ff00ff, transparent);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon), transparent);
+            animation: expand 2s ease forwards;
         }
 
+        @keyframes expand {
+            to { width: 100%; }
+        }
+
+        .section-title::before {
+            content: '▶';
+            position: absolute;
+            left: -30px;
+            color: var(--secondary-neon);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Enhanced Content */
         .content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #b8b8ff;
-            margin: 20px 0;
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--text-light);
+            margin: 25px 0;
+            text-shadow: 0 0 5px rgba(184, 184, 255, 0.3);
         }
 
-        .grid {
+        /* Game Showcase Grid */
+        .game-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
         }
 
-        .card {
-            background: rgba(26, 26, 62, 0.5);
-            border: 1px solid #00ffff;
-            padding: 30px;
-            transition: all 0.3s ease;
+        .game-card {
+            background: linear-gradient(135deg, rgba(26, 26, 62, 0.9), rgba(10, 14, 39, 0.9));
+            border: 2px solid var(--secondary-neon);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .game-card:hover::before {
+            left: 100%;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 
+                0 20px 40px rgba(0, 255, 255, 0.4),
+                0 0 60px rgba(255, 0, 255, 0.2);
+            border-color: var(--primary-neon);
+        }
+
+        .game-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a3e, #0f0820);
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
+        .game-preview::after {
+            content: 'PLAY';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--primary-neon);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 0 0 20px var(--primary-neon);
+        }
+
+        .game-card:hover .game-preview::after {
+            opacity: 0.8;
+            animation: pulse-text 1s infinite;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .game-info {
+            padding: 30px;
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            color: var(--secondary-neon);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .game-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 5px 15px;
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary-neon);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--primary-neon);
+        }
+
+        /* Mystery Section */
+        .mystery-section {
+            margin: 80px 0;
+            padding: 60px;
+            background: radial-gradient(ellipse at center, rgba(255, 0, 255, 0.05), transparent);
+            position: relative;
+        }
+
+        .mystery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mystery-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(26, 26, 62, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .mystery-item::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, var(--secondary-neon), transparent);
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .mystery-item:hover::before {
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent,
-                rgba(0, 255, 255, 0.1),
-                transparent
-            );
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
+            opacity: 0.1;
         }
 
-        .card:hover::before {
-            left: 100%;
+        .mystery-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
-            border-color: #ff00ff;
+        .mystery-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-neon);
+            filter: drop-shadow(0 0 10px currentColor);
         }
 
-        .card-title {
-            font-size: 1.5rem;
-            color: #00ffff;
-            margin-bottom: 15px;
+        .mystery-title {
+            font-size: 1.3rem;
+            color: var(--primary-neon);
+            margin-bottom: 10px;
             text-transform: uppercase;
         }
 
-        .card-content {
-            color: #b8b8ff;
+        .mystery-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
             line-height: 1.6;
         }
 
-        .pixel-divider {
-            width: 100%;
-            height: 4px;
-            background: repeating-linear-gradient(
-                90deg,
-                #ff00ff 0px,
-                #ff00ff 10px,
-                transparent 10px,
-                transparent 20px,
-                #00ffff 20px,
-                #00ffff 30px,
-                transparent 30px,
-                transparent 40px
-            );
-            margin: 60px 0;
+        /* ASCII Art Divider */
+        .ascii-divider {
+            text-align: center;
+            margin: 80px 0;
+            color: var(--primary-neon);
+            font-size: 1.2rem;
+            line-height: 1.2;
+            font-family: monospace;
+            text-shadow: 0 0 10px currentColor;
+            animation: ascii-glow 2s infinite alternate;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
+        @keyframes ascii-glow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Terminal Style Section */
+        .terminal {
+            background: #000;
+            border: 2px solid var(--secondary-neon);
+            padding: 30px;
+            margin: 60px 0;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .terminal::before {
+            content: '◼ SYSTEM.TERMINAL.v2.1';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            color: var(--secondary-neon);
             font-size: 0.9rem;
         }
 
+        .terminal-line {
+            margin: 10px 0;
+            color: #0f0;
+            opacity: 0;
+            animation: type-in 0.5s forwards;
+        }
+
+        .terminal-line:nth-child(1) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(2) { animation-delay: 1s; }
+        .terminal-line:nth-child(3) { animation-delay: 1.5s; }
+        .terminal-line:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes type-in {
+            to { opacity: 1; }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #0f0;
+            animation: cursor-blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes cursor-blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 100px;
+            border-top: 1px solid rgba(255, 0, 255, 0.3);
+            position: relative;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 1rem;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-text:hover {
+            color: var(--primary-neon);
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .final-message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--primary-neon);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: final-glow 3s infinite alternate;
+        }
+
+        @keyframes final-glow {
+            0% { text-shadow: 0 0 10px currentColor; }
+            100% { text-shadow: 0 0 30px currentColor, 0 0 50px currentColor; }
+        }
+
+        /* CRT Effect */
         .crt::before {
             content: " ";
             display: block;
@@ -208,37 +611,63 @@
             right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
             background-size: 100% 4px;
-            z-index: 2;
+            z-index: 1000;
             pointer-events: none;
-            animation: crt 0.1s infinite;
+            animation: crt-flicker 0.15s infinite;
         }
 
-        @keyframes crt {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+        @keyframes crt-flicker {
+            0% { opacity: 0.85; }
+            50% { opacity: 0.95; }
+            100% { opacity: 0.85; }
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .glitch {
-                font-size: 2.5rem;
-            }
-            .section-title {
-                font-size: 1.5rem;
-            }
+            .glitch { font-size: 3rem; }
+            .section-title { font-size: 1.8rem; }
+            .mystery-grid { grid-template-columns: 1fr; }
+            .game-showcase { grid-template-columns: 1fr; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+            border: 1px solid var(--primary-neon);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-neon);
+            box-shadow: 0 0 10px var(--primary-neon);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-neon);
+            box-shadow: 0 0 10px var(--secondary-neon);
         }
     </style>
 </head>
 <body>
     <div class="crt"></div>
+    <div class="pixel-grid"></div>
+    <div class="bg-container">
+        <div class="fog"></div>
+    </div>
     <div class="stars" id="stars"></div>
     
     <div class="container">
         <header>
-            <h1 class="glitch">Occult AI</h1>
+            <div class="logo-container">
+                <h1 class="glitch">Occult AI</h1>
+            </div>
             <p class="subtitle">
                 オカルトとAI、科学と神秘——相反するはずの二つは、奇妙なほどよく似ている。<br>
-                理性と未知が交わる境界に、私たちは立っている。
+                理性と未知が交わる境界に、私たちは立っている。<br>
+                デジタルの深淵で、何かが待っている。
             </p>
         </header>
 
@@ -249,37 +678,110 @@
                 そして人工知能——人類の知性を模倣し、やがて超越するかもしれない存在。<br><br>
                 
                 私たちは、この二つの境界を探索します。<br>
-                ホラーゲーム、インタラクティブストーリー、そして説明のつかない体験を通じて。<br><br>
+                ピクセルアートで描かれるホラーゲーム、インタラクティブストーリー、<br>
+                そして説明のつかない体験を通じて。<br><br>
                 
-                ようこそ、デジタルと神秘が交差する世界へ。
+                ようこそ、デジタルと神秘が交差する世界へ。<br>
+                ここでは、すべてのピクセルが物語を語る。
             </p>
         </div>
 
-        <div class="pixel-divider"></div>
+        <div class="ascii-divider">
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓<br>
+            ░░░░░░░░░░░░░░ PROJECTS IN DEVELOPMENT ░░░░░░░░░░░░░<br>
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+        </div>
 
-        <h2 class="section-title">Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <h3 class="card-title">怪談生成AI</h3>
-                <p class="card-content">
-                    深層学習で生成される、終わりのない怪談。あなたの恐怖を学習し、進化し続けます。
-                </p>
+        <h2 class="section-title">Game Projects</h2>
+        <div class="game-showcase">
+            <div class="game-card">
+                <div class="game-preview"></div>
+                <div class="game-info">
+                    <h3 class="game-title">霧の港町</h3>
+                    <p class="game-description">
+                        クトゥルフ神話inspired ピクセルアートホラー。<br>
+                        探偵となり、友人の失踪の謎を追う。<br>
+                        正気度システムが、あなたの知覚を歪める。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Horror</span>
+                        <span class="tag">Pixel Art</span>
+                        <span class="tag">Mystery</span>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3 class="card-title">都市伝説アーカイブ</h3>
-                <p class="card-content">
-                    世界中の都市伝説をデータベース化。忘れられた物語が、ここで息を吹き返す。
-                </p>
+
+            <div class="game-card">
+                <div class="game-preview"></div>
+                <div class="game-info">
+                    <h3 class="game-title">AI怪談生成器</h3>
+                    <p class="game-description">
+                        あなたの恐怖を学習し、進化する怪談AI。<br>
+                        深層学習が紡ぐ、終わりのない恐怖体験。<br>
+                        二度と同じ話は生まれない。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">AI Generated</span>
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Adaptive</span>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3 class="card-title">インタラクティブホラー</h3>
-                <p class="card-content">
-                    選択が結末を変える。あなたの決断が、物語の行方を——そして運命を決める。
-                </p>
+
+            <div class="game-card">
+                <div class="game-preview"></div>
+                <div class="game-info">
+                    <h3 class="game-title">都市伝説アーカイブ</h3>
+                    <p class="game-description">
+                        世界中の都市伝説をインタラクティブに体験。<br>
+                        データベースから蘇る、忘れられた恐怖。<br>
+                        あなたの選択が、物語の結末を変える。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Database</span>
+                        <span class="tag">Multi-ending</span>
+                        <span class="tag">Global</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="pixel-divider"></div>
+        <div class="mystery-section">
+            <h2 class="section-title">Core Concepts</h2>
+            <div class="mystery-grid">
+                <div class="mystery-item">
+                    <div class="mystery-icon">◉</div>
+                    <h3 class="mystery-title">Digital Occultism</h3>
+                    <p class="mystery-desc">
+                        AIが生成する恐怖は、<br>
+                        人間の深層心理を映し出す鏡
+                    </p>
+                </div>
+                <div class="mystery-item">
+                    <div class="mystery-icon">⬟</div>
+                    <h3 class="mystery-title">Pixel Horror</h3>
+                    <p class="mystery-desc">
+                        限られたピクセルが生む<br>
+                        無限の想像と恐怖
+                    </p>
+                </div>
+                <div class="mystery-item">
+                    <div class="mystery-icon">▣</div>
+                    <h3 class="mystery-title">Interactive Fear</h3>
+                    <p class="mystery-desc">
+                        プレイヤーの選択が<br>
+                        新たな恐怖を生み出す
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-line">> ACCESSING_HIDDEN_FILES...</div>
+            <div class="terminal-line">> DECRYPTING_DATA...</div>
+            <div class="terminal-line">> WARNING: UNKNOWN_ENTITY_DETECTED</div>
+            <div class="terminal-line">> CONNECTION_ESTABLISHED<span class="cursor"></span></div>
+        </div>
 
         <div class="neon-box">
             <h2 class="section-title">Philosophy</h2>
@@ -291,48 +793,248 @@
                 その矛盾こそが、創造の源泉となる。<br><br>
                 
                 科学と神秘、論理と直感、既知と未知——<br>
-                対立するものの狭間にこそ、真実が潜んでいる。
+                対立するものの狭間にこそ、真実が潜んでいる。<br><br>
+                
+                ピクセルの向こう側に、何が見えますか？<br>
+                それは、あなた自身の恐怖かもしれない。
             </p>
         </div>
 
+        <div class="ascii-divider">
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<br>
+            ▓▓▓▓▓▓▓▓▓▓▓▓ SYSTEM_MESSAGE ▓▓▓▓▓▓▓▓▓▓▓▓<br>
+            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+        </div>
+
         <footer>
-            <p>© 2025 Occult AI. All mysteries reserved.</p>
-            <p style="margin-top: 10px; color: #ff00ff;">理性の限界で、君を待っている。</p>
+            <p class="footer-text">© 2025 Occult AI Project</p>
+            <p class="footer-text">All mysteries reserved. All pixels calculated.</p>
+            <p class="final-message">理性の限界で、君を待っている。</p>
         </footer>
     </div>
 
     <script>
-        // 星を生成
+        // Enhanced star generation with different sizes
         const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 100; i++) {
+        const starSizes = ['small', 'medium', 'large'];
+        
+        for (let i = 0; i < 150; i++) {
             const star = document.createElement('div');
-            star.className = 'star';
+            const size = starSizes[Math.floor(Math.random() * starSizes.length)];
+            star.className = `star ${size}`;
             star.style.left = Math.random() * 100 + '%';
             star.style.top = Math.random() * 100 + '%';
             star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
             starsContainer.appendChild(star);
         }
 
-        // カーソルエフェクト
+        // Mouse follower effect
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        
         document.addEventListener('mousemove', (e) => {
-            const card = document.elementFromPoint(e.clientX, e.clientY);
-            if (card && card.classList.contains('card')) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', x + 'px');
-                card.style.setProperty('--mouse-y', y + 'px');
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Smooth cursor trailing effect
+        const cursor = document.createElement('div');
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ff00ff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            mix-blend-mode: screen;
+        `;
+        document.body.appendChild(cursor);
+
+        const animateCursor = () => {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+            requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+
+        // Glitch effect on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            const glitch = document.querySelector('.glitch');
+            
+            if (st > lastScrollTop) {
+                glitch.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
+            } else {
+                glitch.style.transform = `translateX(${Math.random() * -4 + 2}px)`;
+            }
+            
+            setTimeout(() => {
+                glitch.style.transform = 'translateX(0)';
+            }, 100);
+            
+            lastScrollTop = st <= 0 ? 0 : st;
+        });
+
+        // Random glitch on title
+        setInterval(() => {
+            const glitch = document.querySelector('.glitch');
+            const originalText = glitch.textContent;
+            const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+            
+            glitch.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+            
+            // Random character replacement for glitch effect
+            let glitchedText = '';
+            for (let i = 0; i < originalText.length; i++) {
+                if (Math.random() > 0.9) {
+                    glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                } else {
+                    glitchedText += originalText[i];
+                }
+            }
+            
+            glitch.textContent = glitchedText;
+            
+            setTimeout(() => {
+                glitch.textContent = 'Occult AI';
+                glitch.style.filter = 'none';
+            }, 100);
+        }, 4000);
+
+        // Interactive game cards
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const preview = card.querySelector('.game-preview');
+                preview.style.background = `linear-gradient(135deg, 
+                    hsl(${Math.random() * 360}, 50%, 10%), 
+                    hsl(${Math.random() * 360}, 50%, 20%))`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const preview = card.querySelector('.game-preview');
+                preview.style.background = 'linear-gradient(135deg, #1a1a3e, #0f0820)';
+            });
+        });
+
+        // Mystery items interaction
+        document.querySelectorAll('.mystery-item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                const messages = [
+                    '真実は、コードの中に隠されている...',
+                    'ピクセルの向こう側を見たことがあるか？',
+                    '選択は既に、AIによって決められている...'
+                ];
+                
+                const icon = item.querySelector('.mystery-icon');
+                const originalIcon = icon.textContent;
+                icon.textContent = '?';
+                icon.style.color = '#ff00ff';
+                
+                const desc = item.querySelector('.mystery-desc');
+                const originalDesc = desc.innerHTML;
+                desc.innerHTML = messages[index];
+                desc.style.color = '#ff00ff';
+                
+                setTimeout(() => {
+                    icon.textContent = originalIcon;
+                    icon.style.color = '';
+                    desc.innerHTML = originalDesc;
+                    desc.style.color = '';
+                }, 2000);
+            });
+        });
+
+        // Terminal typing effect enhancement
+        const terminal = document.querySelector('.terminal');
+        let terminalLines = [
+            '> SCANNING_CONSCIOUSNESS...',
+            '> REALITY_CHECK: FAILED',
+            '> INITIATING_DREAM_SEQUENCE...',
+            '> ERROR: BOUNDARY_NOT_FOUND'
+        ];
+
+        terminal.addEventListener('click', () => {
+            const newLine = document.createElement('div');
+            newLine.className = 'terminal-line';
+            newLine.style.animationDelay = '0s';
+            newLine.textContent = terminalLines[Math.floor(Math.random() * terminalLines.length)];
+            terminal.appendChild(newLine);
+            
+            if (terminal.children.length > 8) {
+                terminal.removeChild(terminal.children[1]);
             }
         });
 
-        // ランダムグリッチエフェクト
-        setInterval(() => {
-            const glitch = document.querySelector('.glitch');
-            glitch.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
-            setTimeout(() => {
-                glitch.style.transform = 'translate(0, 0)';
-            }, 50);
-        }, 3000);
+        // Parallax effect for neon boxes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const neonBoxes = document.querySelectorAll('.neon-box');
+            
+            neonBoxes.forEach((box, index) => {
+                const speed = 0.5 + (index * 0.1);
+                box.style.transform = `translateY(${scrolled * -speed * 0.1}px)`;
+            });
+        });
+
+        // Audio context for ambient sound (silent, but adds to atmosphere)
+        let audioContext;
+        document.addEventListener('click', () => {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 40; // Sub-bass frequency
+                gainNode.gain.value = 0.001; // Nearly inaudible
+                
+                oscillator.start();
+                setTimeout(() => oscillator.stop(), 100);
+            }
+        });
+
+        // Console Easter Egg
+        console.log('%c⚠ WARNING ⚠', 'color: #ff00ff; font-size: 30px; font-weight: bold;');
+        console.log('%cYou have entered the developer console.', 'color: #00ffff; font-size: 16px;');
+        console.log('%cThe boundary between code and reality is thinner than you think...', 'color: #ff00ff; font-size: 14px;');
+        console.log('%c◉ ◉ ◉', 'color: #ffff00; font-size: 20px;');
+        
+        // Page visibility API for mysterious behavior
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                document.title = '...待っている...';
+            } else {
+                document.title = 'Occult AI - 神秘とAIの境界';
+            }
+        });
+
+        // Konami code Easter egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    document.body.style.animation = 'glitch-animation 0.5s infinite';
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                        alert('真実へようこそ / Welcome to the truth');
+                    }, 2000);
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
     </script>
 </body>
 </html>
