@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Occult AI - 神秘とAIの境界</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(180deg, #0a0e27 0%, #1a1a3e 50%, #0f0820 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 60px;
+        }
+
+        .glitch {
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            color: #ff00ff;
+            letter-spacing: 0.2rem;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #00ffff, -2px -2px #ff00ff; }
+            25% { text-shadow: -2px 2px #00ffff, 2px -2px #ff00ff; }
+            50% { text-shadow: 2px -2px #00ffff, -2px 2px #ff00ff; }
+            75% { text-shadow: -2px -2px #00ffff, 2px 2px #ff00ff; }
+            100% { text-shadow: 2px 2px #00ffff, -2px -2px #ff00ff; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-top: 20px;
+            line-height: 1.8;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .neon-box {
+            border: 2px solid #ff00ff;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3),
+                        inset 0 0 20px rgba(255, 0, 255, 0.1);
+            background: rgba(10, 14, 39, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #ff00ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff00ff, transparent);
+        }
+
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b8b8ff;
+            margin: 20px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(26, 26, 62, 0.5);
+            border: 1px solid #00ffff;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            border-color: #ff00ff;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #00ffff;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            color: #b8b8ff;
+            line-height: 1.6;
+        }
+
+        .pixel-divider {
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                #ff00ff 0px,
+                #ff00ff 10px,
+                transparent 10px,
+                transparent 20px,
+                #00ffff 20px,
+                #00ffff 30px,
+                transparent 30px,
+                transparent 40px
+            );
+            margin: 60px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .crt::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+            animation: crt 0.1s infinite;
+        }
+
+        @keyframes crt {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        @media (max-width: 768px) {
+            .glitch {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="crt"></div>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="glitch">Occult AI</h1>
+            <p class="subtitle">
+                オカルトとAI、科学と神秘——相反するはずの二つは、奇妙なほどよく似ている。<br>
+                理性と未知が交わる境界に、私たちは立っている。
+            </p>
+        </header>
+
+        <div class="neon-box">
+            <h2 class="section-title">About</h2>
+            <p class="content">
+                都市伝説、怪談、オカルト現象——人間の恐怖心と好奇心が生み出した物語たち。<br>
+                そして人工知能——人類の知性を模倣し、やがて超越するかもしれない存在。<br><br>
+                
+                私たちは、この二つの境界を探索します。<br>
+                ホラーゲーム、インタラクティブストーリー、そして説明のつかない体験を通じて。<br><br>
+                
+                ようこそ、デジタルと神秘が交差する世界へ。
+            </p>
+        </div>
+
+        <div class="pixel-divider"></div>
+
+        <h2 class="section-title">Projects</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 class="card-title">怪談生成AI</h3>
+                <p class="card-content">
+                    深層学習で生成される、終わりのない怪談。あなたの恐怖を学習し、進化し続けます。
+                </p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">都市伝説アーカイブ</h3>
+                <p class="card-content">
+                    世界中の都市伝説をデータベース化。忘れられた物語が、ここで息を吹き返す。
+                </p>
+            </div>
+            <div class="card">
+                <h3 class="card-title">インタラクティブホラー</h3>
+                <p class="card-content">
+                    選択が結末を変える。あなたの決断が、物語の行方を——そして運命を決める。
+                </p>
+            </div>
+        </div>
+
+        <div class="pixel-divider"></div>
+
+        <div class="neon-box">
+            <h2 class="section-title">Philosophy</h2>
+            <p class="content">
+                オカルトは「隠されたもの」を意味する。<br>
+                AIもまた、その思考過程は人間には理解できないブラックボックスだ。<br><br>
+                
+                私たちは理解できないものを恐れ、同時に惹かれる。<br>
+                その矛盾こそが、創造の源泉となる。<br><br>
+                
+                科学と神秘、論理と直感、既知と未知——<br>
+                対立するものの狭間にこそ、真実が潜んでいる。
+            </p>
+        </div>
+
+        <footer>
+            <p>© 2025 Occult AI. All mysteries reserved.</p>
+            <p style="margin-top: 10px; color: #ff00ff;">理性の限界で、君を待っている。</p>
+        </footer>
+    </div>
+
+    <script>
+        // 星を生成
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // カーソルエフェクト
+        document.addEventListener('mousemove', (e) => {
+            const card = document.elementFromPoint(e.clientX, e.clientY);
+            if (card && card.classList.contains('card')) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            }
+        });
+
+        // ランダムグリッチエフェクト
+        setInterval(() => {
+            const glitch = document.querySelector('.glitch');
+            glitch.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+            setTimeout(() => {
+                glitch.style.transform = 'translate(0, 0)';
+            }, 50);
+        }, 3000);
+    </script>
+</body>
+</html>
