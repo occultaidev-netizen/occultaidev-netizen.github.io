@@ -322,14 +322,19 @@
         }
 
         .game-card {
+            position: relative;
             background: linear-gradient(135deg, rgba(26, 26, 62, 0.9), rgba(10, 14, 39, 0.9));
             border: 2px solid var(--secondary-neon);
             padding: 0;
-            position: relative;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.4s ease;
             transform-style: preserve-3d;
+            text-decoration: none;
+            color: #fff;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
         }
 
         .game-card::before {
@@ -341,6 +346,7 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: left 0.5s ease;
+            z-index: 1;
         }
 
         .game-card:hover::before {
@@ -355,12 +361,24 @@
             border-color: var(--primary-neon);
         }
 
+        /* Background image for game cards */
+        .game-card[style*="background-image"] {
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .game-card[style*="background-image"] .game-info {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
+        }
+
         .game-preview {
             width: 100%;
             height: 200px;
             background: linear-gradient(135deg, #1a1a3e, #0f0820);
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .game-preview::after {
@@ -388,6 +406,12 @@
 
         .game-info {
             padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 2;
         }
 
         .game-title {
@@ -426,6 +450,26 @@
             color: #000;
             transform: scale(1.05);
             box-shadow: 0 0 15px var(--primary-neon);
+        }
+
+        /* Coming Soon Overlay */
+        .coming-soon {
+            filter: grayscale(0.4) brightness(0.7);
+        }
+
+        .coming-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 0, 255, 0.8);
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            z-index: 3;
+            border: 1px solid var(--primary-neon);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
         }
 
         /* Mystery Section */
@@ -688,8 +732,122 @@
 
         <div class="ascii-divider">
             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓<br>
+            ░░░░░░░░░░░░░░ RELEASED APPLICATIONS ░░░░░░░░░░░░░<br>
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+        </div>
+
+        <h2 class="section-title">Released Apps</h2>
+        <div class="game-showcase">
+            <!-- Robotics Workshop -->
+            <a href="https://play.google.com/store/apps/details?id=com.occultai.robotics_workshop" target="_blank" class="game-card" style="background-image:url('https://i.imgur.com/R5U1vHk.png');">
+                <div class="game-info">
+                    <h3 class="game-title">Robotics Workshop</h3>
+                    <p class="game-description">
+                        ロボット工房をテーマにしたインタラクティブシミュレーター。<br>
+                        部品を組み合わせ、AIの力で生命を吹き込め。<br>
+                        デジタルと創造の融合がここに。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Simulation</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Workshop</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Kaleidoscope -->
+            <a href="https://play.google.com/store/apps/details?id=com.occultai.kaleidoscope" target="_blank" class="game-card" style="background-image:url('https://i.imgur.com/WqK1bW8.png');">
+                <div class="game-info">
+                    <h3 class="game-title">Kaleidoscope</h3>
+                    <p class="game-description">
+                        無限に変化する万華鏡の世界。<br>
+                        光と形がAIによって生成され、常に異なる模様が生まれる。<br>
+                        静かな瞑想のような体験をあなたに。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Art</span>
+                        <span class="tag">Generative</span>
+                        <span class="tag">Relax</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Nantoiu -->
+            <a href="https://play.google.com/store/apps/details?id=com.occultai.nantoiu" target="_blank" class="game-card" style="background-image:url('https://i.imgur.com/4lp5EwK.png');">
+                <div class="game-info">
+                    <h3 class="game-title">Nantoiu</h3>
+                    <p class="game-description">
+                        意識と記憶をテーマにしたデジタル実験。<br>
+                        現実と夢の境界を曖昧にするAI体験アプリ。<br>
+                        それは、あなたの中の「何と云う」もの。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Experimental</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Mystery</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="ascii-divider">
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓<br>
             ░░░░░░░░░░░░░░ PROJECTS IN DEVELOPMENT ░░░░░░░░░░░░░<br>
             ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+        </div>
+
+        <h2 class="section-title">Upcoming Titles</h2>
+        <div class="game-showcase">
+            <!-- Dystopia Simulation -->
+            <div class="game-card coming-soon" style="background-image:url('https://i.imgur.com/9y9vR7W.png');">
+                <div class="coming-overlay">COMING SOON</div>
+                <div class="game-info">
+                    <h3 class="game-title">[Untitled: Dystopia Management]</h3>
+                    <p class="game-description">
+                        ディストピアへと進む都市を管理する経営シミュレーション。<br>
+                        生存のために倫理を捨てる時、あなたは何を守るのか。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Simulation</span>
+                        <span class="tag">Strategy</span>
+                        <span class="tag">Dark Future</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rulebook Horror -->
+            <div class="game-card coming-soon" style="background-image:url('https://i.imgur.com/DdXg3TX.png');">
+                <div class="coming-overlay">COMING SOON</div>
+                <div class="game-info">
+                    <h3 class="game-title">[Untitled: Rulebook]</h3>
+                    <p class="game-description">
+                        閉ざされた空間で、謎の「規則書」に従うしかない恐怖。<br>
+                        一行の違反が、死を呼ぶ。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Horror</span>
+                        <span class="tag">Psychological</span>
+                        <span class="tag">Mystery</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eternal Loop -->
+            <div class="game-card coming-soon" style="background-image:url('https://i.imgur.com/6zvXoep.png');">
+                <div class="coming-overlay">COMING SOON</div>
+                <div class="game-info">
+                    <h3 class="game-title">[Untitled: Eternal Loop]</h3>
+                    <p class="game-description">
+                        同僚たちと共に、終わらない時間を繰り返す。<br>
+                        忘却と再生の果てに、希望はあるのか。
+                    </p>
+                    <div class="game-tags">
+                        <span class="tag">Narrative</span>
+                        <span class="tag">Time Loop</span>
+                        <span class="tag">Drama</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <h2 class="section-title">Game Projects</h2>
@@ -911,14 +1069,18 @@
         document.querySelectorAll('.game-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 const preview = card.querySelector('.game-preview');
-                preview.style.background = `linear-gradient(135deg, 
-                    hsl(${Math.random() * 360}, 50%, 10%), 
-                    hsl(${Math.random() * 360}, 50%, 20%))`;
+                if (preview) {
+                    preview.style.background = `linear-gradient(135deg, 
+                        hsl(${Math.random() * 360}, 50%, 10%), 
+                        hsl(${Math.random() * 360}, 50%, 20%))`;
+                }
             });
             
             card.addEventListener('mouseleave', () => {
                 const preview = card.querySelector('.game-preview');
-                preview.style.background = 'linear-gradient(135deg, #1a1a3e, #0f0820)';
+                if (preview) {
+                    preview.style.background = 'linear-gradient(135deg, #1a1a3e, #0f0820)';
+                }
             });
         });
 
