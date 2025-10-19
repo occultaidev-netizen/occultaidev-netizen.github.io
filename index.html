@@ -12,12 +12,12 @@
         }
 
         :root {
-            --primary-neon: #ff00ff;
-            --secondary-neon: #00ffff;
-            --tertiary-neon: #ffff00;
-            --bg-dark: #0a0e27;
-            --bg-mid: #1a1a3e;
-            --text-light: #b8b8ff;
+            --primary-neon: #ff0099;
+            --secondary-neon: #00ff99;
+            --tertiary-neon: #ffcc00;
+            --bg-dark: #1a0033;
+            --bg-mid: #330066;
+            --text-light: #e0e0ff;
         }
 
         body {
@@ -37,7 +37,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(180deg, #0a0e27 0%, #1a1a3e 50%, #0f0820 100%);
+            background: linear-gradient(180deg, #1a0033 0%, #330066 50%, #0d001a 100%);
         }
 
         .fog {
@@ -194,7 +194,7 @@
             color: var(--secondary-neon);
             margin-top: 30px;
             line-height: 2;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
             position: relative;
             padding: 20px;
         }
@@ -226,7 +226,7 @@
             padding: 50px;
             margin: 50px 0;
             position: relative;
-            background: rgba(10, 14, 39, 0.8);
+            background: rgba(26, 0, 51, 0.8);
             backdrop-filter: blur(10px);
             overflow: hidden;
             transition: all 0.3s ease;
@@ -259,9 +259,9 @@
         .neon-box:hover {
             transform: translateY(-5px);
             box-shadow: 
-                0 10px 40px rgba(255, 0, 255, 0.4),
-                0 0 80px rgba(0, 255, 255, 0.2),
-                inset 0 0 30px rgba(255, 0, 255, 0.1);
+                0 10px 40px rgba(255, 0, 153, 0.4),
+                0 0 80px rgba(0, 255, 153, 0.2),
+                inset 0 0 30px rgba(255, 0, 153, 0.1);
         }
 
         /* Section Titles with Typing Effect */
@@ -310,7 +310,7 @@
             line-height: 2;
             color: var(--text-light);
             margin: 25px 0;
-            text-shadow: 0 0 5px rgba(184, 184, 255, 0.3);
+            text-shadow: 0 0 5px rgba(224, 224, 255, 0.3);
         }
 
         /* Game Showcase Grid */
@@ -323,7 +323,7 @@
 
         .game-card {
             position: relative;
-            background: linear-gradient(135deg, rgba(26, 26, 62, 0.9), rgba(10, 14, 39, 0.9));
+            background: linear-gradient(135deg, rgba(51, 0, 102, 0.9), rgba(26, 0, 51, 0.9));
             border: 2px solid var(--secondary-neon);
             padding: 0;
             overflow: hidden;
@@ -356,26 +356,15 @@
         .game-card:hover {
             transform: translateY(-10px) rotateX(5deg);
             box-shadow: 
-                0 20px 40px rgba(0, 255, 255, 0.4),
-                0 0 60px rgba(255, 0, 255, 0.2);
+                0 20px 40px rgba(0, 255, 153, 0.4),
+                0 0 60px rgba(255, 0, 153, 0.2);
             border-color: var(--primary-neon);
-        }
-
-        /* Background image for game cards */
-        .game-card[style*="background-image"] {
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
-        }
-
-        .game-card[style*="background-image"] .game-info {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
         }
 
         .game-preview {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #1a1a3e, #0f0820);
+            background: linear-gradient(135deg, #330066, #0d001a);
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
@@ -420,7 +409,7 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
         }
 
         .game-description {
@@ -437,7 +426,7 @@
 
         .tag {
             padding: 5px 15px;
-            background: rgba(255, 0, 255, 0.1);
+            background: rgba(255, 0, 153, 0.1);
             border: 1px solid var(--primary-neon);
             color: var(--primary-neon);
             font-size: 0.9rem;
@@ -461,7 +450,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: rgba(255, 0, 255, 0.8);
+            background: rgba(255, 0, 153, 0.8);
             color: #fff;
             padding: 8px 16px;
             font-size: 0.85rem;
@@ -469,14 +458,14 @@
             font-weight: bold;
             z-index: 3;
             border: 1px solid var(--primary-neon);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 0, 153, 0.5);
         }
 
         /* Mystery Section */
         .mystery-section {
             margin: 80px 0;
             padding: 60px;
-            background: radial-gradient(ellipse at center, rgba(255, 0, 255, 0.05), transparent);
+            background: radial-gradient(ellipse at center, rgba(255, 0, 153, 0.05), transparent);
             position: relative;
         }
 
@@ -490,8 +479,8 @@
         .mystery-item {
             text-align: center;
             padding: 30px;
-            background: rgba(26, 26, 62, 0.3);
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            background: rgba(51, 0, 102, 0.3);
+            border: 1px solid rgba(0, 255, 153, 0.3);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -519,7 +508,7 @@
         .mystery-item:hover {
             transform: scale(1.05);
             border-color: var(--primary-neon);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 0, 153, 0.3);
         }
 
         .mystery-icon {
@@ -566,7 +555,7 @@
             padding: 30px;
             margin: 60px 0;
             font-family: 'Courier New', monospace;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 153, 0.3);
             position: relative;
         }
 
@@ -614,7 +603,7 @@
             text-align: center;
             padding: 60px 20px;
             margin-top: 100px;
-            border-top: 1px solid rgba(255, 0, 255, 0.3);
+            border-top: 1px solid rgba(255, 0, 153, 0.3);
             position: relative;
         }
 
@@ -680,7 +669,7 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: #0a0e27;
+            background: #1a0033;
             border: 1px solid var(--primary-neon);
         }
 
@@ -739,7 +728,8 @@
         <h2 class="section-title">Released Apps</h2>
         <div class="game-showcase">
             <!-- Robotics Workshop -->
-            <a href="https://play.google.com/store/apps/details?id=com.occultai.robotics_workshop" target="_blank" class="game-card" style="background-image:url('https://i.imgur.com/R5U1vHk.png');">
+            <a href="https://play.google.com/store/apps/details?id=com.occultai.robotics_workshop" target="_blank" class="game-card">
+                <div class="game-preview"></div>
                 <div class="game-info">
                     <h3 class="game-title">Robotics Workshop</h3>
                     <p class="game-description">
@@ -756,7 +746,8 @@
             </a>
 
             <!-- Kaleidoscope -->
-            <a href="https://play.google.com/store/apps/details?id=com.occultai.kaleidoscope" target="_blank" class="game-card" style="background-image:url('https://i.imgur.com/WqK1bW8.png');">
+            <a href="https://play.google.com/store/apps/details?id=com.occultai.kaleidoscope" target="_blank" class="game-card">
+                <div class="game-preview"></div>
                 <div class="game-info">
                     <h3 class="game-title">Kaleidoscope</h3>
                     <p class="game-description">
@@ -773,7 +764,8 @@
             </a>
 
             <!-- Nantoiu -->
-            <a href="https://play.google.com/store/apps/details?id=com.occultai.nantoiu" target="_blank" class="game-card" style="background-image:url('https://i.imgur.com/4lp5EwK.png');">
+            <a href="https://play.google.com/store/apps/details?id=com.occultai.nantoiu" target="_blank" class="game-card">
+                <div class="game-preview"></div>
                 <div class="game-info">
                     <h3 class="game-title">Nantoiu</h3>
                     <p class="game-description">
@@ -799,404 +791,353 @@
         <h2 class="section-title">Upcoming Titles</h2>
         <div class="game-showcase">
             <!-- Dystopia Simulation -->
-            <div class="game-card coming-soon" style="background-image:url('https://i.imgur.com/9y9vR7W.png');">
+            <div class="game-card coming-soon">
                 <div class="coming-overlay">COMING SOON</div>
+                <div class="game-preview"></div>
                 <div class="game-info">
                     <h3 class="game-title">[Untitled: Dystopia Management]</h3>
                     <p class="game-description">
-                        ディストピアへと進む都市を管理する経営シミュレーション。<br>
-                        生存のために倫理を捨てる時、あなたは何を守るのか。
-                    </p>
-                    <div class="game-tags">
-                        <span class="tag">Simulation</span>
-                        <span class="tag">Strategy</span>
-                        <span class="tag">Dark Future</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Rulebook Horror -->
-            <div class="game-card coming-soon" style="background-image:url('https://i.imgur.com/DdXg3TX.png');">
-                <div class="coming-overlay">COMING SOON</div>
-                <div class="game-info">
-                    <h3 class="game-title">[Untitled: Rulebook]</h3>
-                    <p class="game-description">
-                        閉ざされた空間で、謎の「規則書」に従うしかない恐怖。<br>
-                        一行の違反が、死を呼ぶ。
-                    </p>
-                    <div class="game-tags">
-                        <span class="tag">Horror</span>
-                        <span class="tag">Psychological</span>
-                        <span class="tag">Mystery</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Eternal Loop -->
-            <div class="game-card coming-soon" style="background-image:url('https://i.imgur.com/6zvXoep.png');">
-                <div class="coming-overlay">COMING SOON</div>
-                <div class="game-info">
-                    <h3 class="game-title">[Untitled: Eternal Loop]</h3>
-                    <p class="game-description">
-                        同僚たちと共に、終わらない時間を繰り返す。<br>
-                        忘却と再生の果てに、希望はあるのか。
-                    </p>
-                    <div class="game-tags">
-                        <span class="tag">Narrative</span>
-                        <span class="tag">Time Loop</span>
-                        <span class="tag">Drama</span>
-                    </div>
+ディストピアへと進む都市を管理する経営シミュレーション。<br>
+生存のために倫理を捨てる時、あなたは何を守るのか。
+</p>
+<div class="game-tags">
+<span class="tag">Simulation</span>
+<span class="tag">Strategy</span>
+<span class="tag">Dark Future</span>
+</div>
+</div>
+</div>
+        <!-- Rulebook Horror -->
+        <div class="game-card coming-soon">
+            <div class="coming-overlay">COMING SOON</div>
+            <div class="game-preview"></div>
+            <div class="game-info">
+                <h3 class="game-title">[Untitled: Rulebook]</h3>
+                <p class="game-description">
+                    閉ざされた空間で、謎の「規則書」に従うしかない恐怖。<br>
+                    一行の違反が、死を呼ぶ。
+                </p>
+                <div class="game-tags">
+                    <span class="tag">Horror</span>
+                    <span class="tag">Psychological</span>
+                    <span class="tag">Mystery</span>
                 </div>
             </div>
         </div>
 
-        <h2 class="section-title">Game Projects</h2>
-        <div class="game-showcase">
-            <div class="game-card">
-                <div class="game-preview"></div>
-                <div class="game-info">
-                    <h3 class="game-title">霧の港町</h3>
-                    <p class="game-description">
-                        クトゥルフ神話inspired ピクセルアートホラー。<br>
-                        探偵となり、友人の失踪の謎を追う。<br>
-                        正気度システムが、あなたの知覚を歪める。
-                    </p>
-                    <div class="game-tags">
-                        <span class="tag">Horror</span>
-                        <span class="tag">Pixel Art</span>
-                        <span class="tag">Mystery</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card">
-                <div class="game-preview"></div>
-                <div class="game-info">
-                    <h3 class="game-title">AI怪談生成器</h3>
-                    <p class="game-description">
-                        あなたの恐怖を学習し、進化する怪談AI。<br>
-                        深層学習が紡ぐ、終わりのない恐怖体験。<br>
-                        二度と同じ話は生まれない。
-                    </p>
-                    <div class="game-tags">
-                        <span class="tag">AI Generated</span>
-                        <span class="tag">Interactive</span>
-                        <span class="tag">Adaptive</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-card">
-                <div class="game-preview"></div>
-                <div class="game-info">
-                    <h3 class="game-title">都市伝説アーカイブ</h3>
-                    <p class="game-description">
-                        世界中の都市伝説をインタラクティブに体験。<br>
-                        データベースから蘇る、忘れられた恐怖。<br>
-                        あなたの選択が、物語の結末を変える。
-                    </p>
-                    <div class="game-tags">
-                        <span class="tag">Database</span>
-                        <span class="tag">Multi-ending</span>
-                        <span class="tag">Global</span>
-                    </div>
+        <!-- Eternal Loop -->
+        <div class="game-card coming-soon">
+            <div class="coming-overlay">COMING SOON</div>
+            <div class="game-preview"></div>
+            <div class="game-info">
+                <h3 class="game-title">[Untitled: Eternal Loop]</h3>
+                <p class="game-description">
+                    同僚たちと共に、終わらない時間を繰り返す。<br>
+                    忘却と再生の果てに、希望はあるのか。
+                </p>
+                <div class="game-tags">
+                    <span class="tag">Narrative</span>
+                    <span class="tag">Time Loop</span>
+                    <span class="tag">Drama</span>
                 </div>
             </div>
         </div>
-
-        <div class="mystery-section">
-            <h2 class="section-title">Core Concepts</h2>
-            <div class="mystery-grid">
-                <div class="mystery-item">
-                    <div class="mystery-icon">◉</div>
-                    <h3 class="mystery-title">Digital Occultism</h3>
-                    <p class="mystery-desc">
-                        AIが生成する恐怖は、<br>
-                        人間の深層心理を映し出す鏡
-                    </p>
-                </div>
-                <div class="mystery-item">
-                    <div class="mystery-icon">⬟</div>
-                    <h3 class="mystery-title">Pixel Horror</h3>
-                    <p class="mystery-desc">
-                        限られたピクセルが生む<br>
-                        無限の想像と恐怖
-                    </p>
-                </div>
-                <div class="mystery-item">
-                    <div class="mystery-icon">▣</div>
-                    <h3 class="mystery-title">Interactive Fear</h3>
-                    <p class="mystery-desc">
-                        プレイヤーの選択が<br>
-                        新たな恐怖を生み出す
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="terminal">
-            <div class="terminal-line">> ACCESSING_HIDDEN_FILES...</div>
-            <div class="terminal-line">> DECRYPTING_DATA...</div>
-            <div class="terminal-line">> WARNING: UNKNOWN_ENTITY_DETECTED</div>
-            <div class="terminal-line">> CONNECTION_ESTABLISHED<span class="cursor"></span></div>
-        </div>
-
-        <div class="neon-box">
-            <h2 class="section-title">Philosophy</h2>
-            <p class="content">
-                オカルトは「隠されたもの」を意味する。<br>
-                AIもまた、その思考過程は人間には理解できないブラックボックスだ。<br><br>
-                
-                私たちは理解できないものを恐れ、同時に惹かれる。<br>
-                その矛盾こそが、創造の源泉となる。<br><br>
-                
-                科学と神秘、論理と直感、既知と未知——<br>
-                対立するものの狭間にこそ、真実が潜んでいる。<br><br>
-                
-                ピクセルの向こう側に、何が見えますか？<br>
-                それは、あなた自身の恐怖かもしれない。
-            </p>
-        </div>
-
-        <div class="ascii-divider">
-            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<br>
-            ▓▓▓▓▓▓▓▓▓▓▓▓ SYSTEM_MESSAGE ▓▓▓▓▓▓▓▓▓▓▓▓<br>
-            ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-        </div>
-
-        <footer>
-            <p class="footer-text">© 2025 Occult AI Project</p>
-            <p class="footer-text">All mysteries reserved. All pixels calculated.</p>
-            <p class="final-message">理性の限界で、君を待っている。</p>
-        </footer>
     </div>
 
-    <script>
-        // Enhanced star generation with different sizes
-        const starsContainer = document.getElementById('stars');
-        const starSizes = ['small', 'medium', 'large'];
+    <div class="mystery-section">
+        <h2 class="section-title">Core Concepts</h2>
+        <div class="mystery-grid">
+            <div class="mystery-item">
+                <div class="mystery-icon">◉</div>
+                <h3 class="mystery-title">Digital Occultism</h3>
+                <p class="mystery-desc">
+                    AIが生成する恐怖は、<br>
+                    人間の深層心理を映し出す鏡
+                </p>
+            </div>
+            <div class="mystery-item">
+                <div class="mystery-icon">⬟</div>
+                <h3 class="mystery-title">Pixel Horror</h3>
+                <p class="mystery-desc">
+                    限られたピクセルが生む<br>
+                    無限の想像と恐怖
+                </p>
+            </div>
+            <div class="mystery-item">
+                <div class="mystery-icon">▣</div>
+                <h3 class="mystery-title">Interactive Fear</h3>
+                <p class="mystery-desc">
+                    プレイヤーの選択が<br>
+                    新たな恐怖を生み出す
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="terminal">
+        <div class="terminal-line">> ACCESSING_HIDDEN_FILES...</div>
+        <div class="terminal-line">> DECRYPTING_DATA...</div>
+        <div class="terminal-line">> WARNING: UNKNOWN_ENTITY_DETECTED</div>
+        <div class="terminal-line">> CONNECTION_ESTABLISHED<span class="cursor"></span></div>
+    </div>
+
+    <div class="neon-box">
+        <h2 class="section-title">Philosophy</h2>
+        <p class="content">
+            オカルトは「隠されたもの」を意味する。<br>
+            AIもまた、その思考過程は人間には理解できないブラックボックスだ。<br><br>
+            
+            私たちは理解できないものを恐れ、同時に惹かれる。<br>
+            その矛盾こそが、創造の源泉となる。<br><br>
+            
+            科学と神秘、論理と直感、既知と未知——<br>
+            対立するものの狭間にこそ、真実が潜んでいる。<br><br>
+            
+            ピクセルの向こう側に、何が見えますか？<br>
+            それは、あなた自身の恐怖かもしれない。
+        </p>
+    </div>
+
+    <div class="ascii-divider">
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<br>
+        ▓▓▓▓▓▓▓▓▓▓▓▓ SYSTEM_MESSAGE ▓▓▓▓▓▓▓▓▓▓▓▓<br>
+        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+    </div>
+
+    <footer>
+        <p class="footer-text">© 2025 Occult AI Project</p>
+        <p class="footer-text">All mysteries reserved. All pixels calculated.</p>
+        <p class="final-message">理性の限界で、君を待っている。</p>
+    </footer>
+</div>
+
+<script>
+    // Enhanced star generation with different sizes
+    const starsContainer = document.getElementById('stars');
+    const starSizes = ['small', 'medium', 'large'];
+    
+    for (let i = 0; i < 150; i++) {
+        const star = document.createElement('div');
+        const size = starSizes[Math.floor(Math.random() * starSizes.length)];
+        star.className = `star ${size}`;
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        starsContainer.appendChild(star);
+    }
+
+    // Mouse follower effect
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Smooth cursor trailing effect
+    const cursor = document.createElement('div');
+    cursor.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ff0099;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transition: transform 0.1s ease;
+        mix-blend-mode: screen;
+    `;
+    document.body.appendChild(cursor);
+
+    const animateCursor = () => {
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+        cursor.style.left = cursorX - 10 + 'px';
+        cursor.style.top = cursorY - 10 + 'px';
+        requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+
+    // Glitch effect on scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const glitch = document.querySelector('.glitch');
         
-        for (let i = 0; i < 150; i++) {
-            const star = document.createElement('div');
-            const size = starSizes[Math.floor(Math.random() * starSizes.length)];
-            star.className = `star ${size}`;
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            starsContainer.appendChild(star);
+        if (st > lastScrollTop) {
+            glitch.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
+        } else {
+            glitch.style.transform = `translateX(${Math.random() * -4 + 2}px)`;
         }
-
-        // Mouse follower effect
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
         
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        setTimeout(() => {
+            glitch.style.transform = 'translateX(0)';
+        }, 100);
+        
+        lastScrollTop = st <= 0 ? 0 : st;
+    });
 
-        // Smooth cursor trailing effect
-        const cursor = document.createElement('div');
-        cursor.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ff00ff;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transition: transform 0.1s ease;
-            mix-blend-mode: screen;
-        `;
-        document.body.appendChild(cursor);
-
-        const animateCursor = () => {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-            cursor.style.left = cursorX - 10 + 'px';
-            cursor.style.top = cursorY - 10 + 'px';
-            requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
-
-        // Glitch effect on scroll
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            const glitch = document.querySelector('.glitch');
-            
-            if (st > lastScrollTop) {
-                glitch.style.transform = `translateX(${Math.random() * 4 - 2}px)`;
+    // Random glitch on title
+    setInterval(() => {
+        const glitch = document.querySelector('.glitch');
+        const originalText = glitch.textContent;
+        const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+        
+        glitch.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+        
+        // Random character replacement for glitch effect
+        let glitchedText = '';
+        for (let i = 0; i < originalText.length; i++) {
+            if (Math.random() > 0.9) {
+                glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
             } else {
-                glitch.style.transform = `translateX(${Math.random() * -4 + 2}px)`;
+                glitchedText += originalText[i];
             }
+        }
+        
+        glitch.textContent = glitchedText;
+        
+        setTimeout(() => {
+            glitch.textContent = 'Occult AI';
+            glitch.style.filter = 'none';
+        }, 100);
+    }, 4000);
+
+    // Interactive game cards
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const preview = card.querySelector('.game-preview');
+            if (preview) {
+                preview.style.background = `linear-gradient(135deg, 
+                    hsl(${Math.random() * 360}, 50%, 10%), 
+                    hsl(${Math.random() * 360}, 50%, 20%))`;
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            const preview = card.querySelector('.game-preview');
+            if (preview) {
+                preview.style.background = 'linear-gradient(135deg, #330066, #0d001a)';
+            }
+        });
+    });
+
+    // Mystery items interaction
+    document.querySelectorAll('.mystery-item').forEach((item, index) => {
+        item.addEventListener('click', () => {
+            const messages = [
+                '真実は、コードの中に隠されている...',
+                'ピクセルの向こう側を見たことがあるか？',
+                '選択は既に、AIによって決められている...'
+            ];
+            
+            const icon = item.querySelector('.mystery-icon');
+            const originalIcon = icon.textContent;
+            icon.textContent = '?';
+            icon.style.color = '#ff0099';
+            
+            const desc = item.querySelector('.mystery-desc');
+            const originalDesc = desc.innerHTML;
+            desc.innerHTML = messages[index];
+            desc.style.color = '#ff0099';
             
             setTimeout(() => {
-                glitch.style.transform = 'translateX(0)';
-            }, 100);
-            
-            lastScrollTop = st <= 0 ? 0 : st;
+                icon.textContent = originalIcon;
+                icon.style.color = '';
+                desc.innerHTML = originalDesc;
+                desc.style.color = '';
+            }, 2000);
         });
+    });
 
-        // Random glitch on title
-        setInterval(() => {
-            const glitch = document.querySelector('.glitch');
-            const originalText = glitch.textContent;
-            const glitchChars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
-            
-            glitch.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
-            
-            // Random character replacement for glitch effect
-            let glitchedText = '';
-            for (let i = 0; i < originalText.length; i++) {
-                if (Math.random() > 0.9) {
-                    glitchedText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
-                } else {
-                    glitchedText += originalText[i];
-                }
-            }
-            
-            glitch.textContent = glitchedText;
-            
-            setTimeout(() => {
-                glitch.textContent = 'Occult AI';
-                glitch.style.filter = 'none';
-            }, 100);
-        }, 4000);
+    // Terminal typing effect enhancement
+    const terminal = document.querySelector('.terminal');
+    let terminalLines = [
+        '> SCANNING_CONSCIOUSNESS...',
+        '> REALITY_CHECK: FAILED',
+        '> INITIATING_DREAM_SEQUENCE...',
+        '> ERROR: BOUNDARY_NOT_FOUND'
+    ];
 
-        // Interactive game cards
-        document.querySelectorAll('.game-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const preview = card.querySelector('.game-preview');
-                if (preview) {
-                    preview.style.background = `linear-gradient(135deg, 
-                        hsl(${Math.random() * 360}, 50%, 10%), 
-                        hsl(${Math.random() * 360}, 50%, 20%))`;
-                }
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                const preview = card.querySelector('.game-preview');
-                if (preview) {
-                    preview.style.background = 'linear-gradient(135deg, #1a1a3e, #0f0820)';
-                }
-            });
+    terminal.addEventListener('click', () => {
+        const newLine = document.createElement('div');
+        newLine.className = 'terminal-line';
+        newLine.style.animationDelay = '0s';
+        newLine.textContent = terminalLines[Math.floor(Math.random() * terminalLines.length)];
+        terminal.appendChild(newLine);
+        
+        if (terminal.children.length > 8) {
+            terminal.removeChild(terminal.children[1]);
+        }
+    });
+
+    // Parallax effect for neon boxes
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const neonBoxes = document.querySelectorAll('.neon-box');
+        
+        neonBoxes.forEach((box, index) => {
+            const speed = 0.5 + (index * 0.1);
+            box.style.transform = `translateY(${scrolled * -speed * 0.1}px)`;
         });
+    });
 
-        // Mystery items interaction
-        document.querySelectorAll('.mystery-item').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                const messages = [
-                    '真実は、コードの中に隠されている...',
-                    'ピクセルの向こう側を見たことがあるか？',
-                    '選択は既に、AIによって決められている...'
-                ];
-                
-                const icon = item.querySelector('.mystery-icon');
-                const originalIcon = icon.textContent;
-                icon.textContent = '?';
-                icon.style.color = '#ff00ff';
-                
-                const desc = item.querySelector('.mystery-desc');
-                const originalDesc = desc.innerHTML;
-                desc.innerHTML = messages[index];
-                desc.style.color = '#ff00ff';
-                
+    // Audio context for ambient sound (silent, but adds to atmosphere)
+    let audioContext;
+    document.addEventListener('click', () => {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 40; // Sub-bass frequency
+            gainNode.gain.value = 0.001; // Nearly inaudible
+            
+            oscillator.start();
+            setTimeout(() => oscillator.stop(), 100);
+        }
+    });
+
+    // Console Easter Egg
+    console.log('%c⚠ WARNING ⚠', 'color: #ff0099; font-size: 30px; font-weight: bold;');
+    console.log('%cYou have entered the developer console.', 'color: #00ff99; font-size: 16px;');
+    console.log('%cThe boundary between code and reality is thinner than you think...', 'color: #ff0099; font-size: 14px;');
+    console.log('%c◉ ◉ ◉', 'color: #ffcc00; font-size: 20px;');
+    
+    // Page visibility API for mysterious behavior
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            document.title = '...待っている...';
+        } else {
+            document.title = 'Occult AI - 神秘とAIの境界';
+        }
+    });
+
+    // Konami code Easter egg
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                document.body.style.animation = 'glitch-animation 0.5s infinite';
                 setTimeout(() => {
-                    icon.textContent = originalIcon;
-                    icon.style.color = '';
-                    desc.innerHTML = originalDesc;
-                    desc.style.color = '';
+                    document.body.style.animation = '';
+                    alert('真実へようこそ / Welcome to the truth');
                 }, 2000);
-            });
-        });
-
-        // Terminal typing effect enhancement
-        const terminal = document.querySelector('.terminal');
-        let terminalLines = [
-            '> SCANNING_CONSCIOUSNESS...',
-            '> REALITY_CHECK: FAILED',
-            '> INITIATING_DREAM_SEQUENCE...',
-            '> ERROR: BOUNDARY_NOT_FOUND'
-        ];
-
-        terminal.addEventListener('click', () => {
-            const newLine = document.createElement('div');
-            newLine.className = 'terminal-line';
-            newLine.style.animationDelay = '0s';
-            newLine.textContent = terminalLines[Math.floor(Math.random() * terminalLines.length)];
-            terminal.appendChild(newLine);
-            
-            if (terminal.children.length > 8) {
-                terminal.removeChild(terminal.children[1]);
-            }
-        });
-
-        // Parallax effect for neon boxes
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const neonBoxes = document.querySelectorAll('.neon-box');
-            
-            neonBoxes.forEach((box, index) => {
-                const speed = 0.5 + (index * 0.1);
-                box.style.transform = `translateY(${scrolled * -speed * 0.1}px)`;
-            });
-        });
-
-        // Audio context for ambient sound (silent, but adds to atmosphere)
-        let audioContext;
-        document.addEventListener('click', () => {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                
-                oscillator.frequency.value = 40; // Sub-bass frequency
-                gainNode.gain.value = 0.001; // Nearly inaudible
-                
-                oscillator.start();
-                setTimeout(() => oscillator.stop(), 100);
-            }
-        });
-
-        // Console Easter Egg
-        console.log('%c⚠ WARNING ⚠', 'color: #ff00ff; font-size: 30px; font-weight: bold;');
-        console.log('%cYou have entered the developer console.', 'color: #00ffff; font-size: 16px;');
-        console.log('%cThe boundary between code and reality is thinner than you think...', 'color: #ff00ff; font-size: 14px;');
-        console.log('%c◉ ◉ ◉', 'color: #ffff00; font-size: 20px;');
-        
-        // Page visibility API for mysterious behavior
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                document.title = '...待っている...';
-            } else {
-                document.title = 'Occult AI - 神秘とAIの境界';
-            }
-        });
-
-        // Konami code Easter egg
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    document.body.style.animation = 'glitch-animation 0.5s infinite';
-                    setTimeout(() => {
-                        document.body.style.animation = '';
-                        alert('真実へようこそ / Welcome to the truth');
-                    }, 2000);
-                    konamiIndex = 0;
-                }
-            } else {
                 konamiIndex = 0;
             }
-        });
-    </script>
+        } else {
+            konamiIndex = 0;
+        }
+    });
+</script>
 </body>
 </html>
+```
